@@ -27,8 +27,8 @@ public class CoursesController(AppDbContext db, DapperContext dapper) : Controll
 
         const string sql = """
             SELECT c."Id", c."Slug", c."Title", c."Description", c."Category",
-                   COUNT(l."Id") AS "TotalLessons",
-                   COUNT(lp."Id") AS "CompletedLessons"
+                   COUNT(l."Id")::int AS "TotalLessons",
+                   COUNT(lp."Id")::int AS "CompletedLessons"
             FROM "Courses" c
             LEFT JOIN "Modules" m ON m."CourseId" = c."Id"
             LEFT JOIN "Lessons" l ON l."ModuleId" = m."Id"
