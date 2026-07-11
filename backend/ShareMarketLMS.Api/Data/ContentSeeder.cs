@@ -12,10 +12,11 @@ public static class ContentSeeder
 {
     private static readonly JsonSerializerOptions JsonOpts = new() { PropertyNameCaseInsensitive = true };
 
-    public static void Seed(AppDbContext db, string contentRootPath, PasswordHasher hasher, ILogger logger)
+    public static void Seed(AppDbContext db, string contentRootPath, PasswordHasher hasher, ILogger logger,
+        IConfiguration? config = null)
     {
         var contentDir = Path.Combine(contentRootPath, "Content");
-        SeedAdmin(db, Path.Combine(contentDir, "courses.json"), hasher, logger);
+        SeedAdmin(db, Path.Combine(contentDir, "courses.json"), hasher, logger, config);
 
         if (db.Courses.Any())
         {
@@ -63,22 +64,26 @@ public static class ContentSeeder
     private static Manifest ReadManifest(string path) =>
         JsonSerializer.Deserialize<Manifest>(File.ReadAllText(path), JsonOpts) ?? new Manifest(null, []);
 
-    private static void SeedAdmin(AppDbContext db, string manifestPath, PasswordHasher hasher, ILogger logger)
+    private static void SeedAdmin(AppDbContext db, string manifestPath, PasswordHasher hasher, ILogger logger,
+        IConfiguration? config = null)
     {
-        if (!File.Exists(manifestPath)) return;
-        var admin = ReadManifest(manifestPath).AdminUser;
-        if (admin is null) return;
-        if (db.Users.Any(u => u.Email == admin.Email)) return;
+        // Env vars override the JSON file — safe for production without exposing credentials in source.
+        var email    = config?["DefaultAdmin:Email"]       ?? (File.Exists(manifestPath) ? ReadManifest(manifestPath).AdminUser?.Email       : null);
+        var name     = config?["DefaultAdmin:DisplayName"] ?? (File.Exists(manifestPath) ? ReadManifest(manifestPath).AdminUser?.DisplayName  : null);
+        var password = config?["DefaultAdmin:Password"]    ?? (File.Exists(manifestPath) ? ReadManifest(manifestPath).AdminUser?.Password     : null);
+
+        if (email is null || password is null) return;
+        if (db.Users.Any(u => u.Email == email)) return;
 
         db.Users.Add(new User
         {
-            Email = admin.Email,
-            DisplayName = admin.DisplayName,
-            PasswordHash = hasher.Hash(admin.Password),
-            Role = "Admin",
+            Email        = email,
+            DisplayName  = name ?? "System Admin",
+            PasswordHash = hasher.Hash(password),
+            Role         = "Admin",
         });
         db.SaveChanges();
-        logger.LogInformation("Seeded admin account {Email}.", admin.Email);
+        logger.LogInformation("Seeded admin account {Email}.", email);
     }
 
     // ---------- generic parser: "## " modules, "### " lessons ----------

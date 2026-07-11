@@ -1,7 +1,7 @@
 {
   "adminUser": {
     "email": "admin@lms.local",
-    "displayName": "Administrator",
+    "displayName": "System Admin",
     "password": "Admin@123"
   },
   "courses": [

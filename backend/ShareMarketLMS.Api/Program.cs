@@ -59,7 +59,7 @@ using (var scope = app.Services.CreateScope())
             )
             """);
         var hasher = scope.ServiceProvider.GetRequiredService<PasswordHasher>();
-        ContentSeeder.Seed(db, app.Environment.ContentRootPath, hasher, logger);
+        ContentSeeder.Seed(db, app.Environment.ContentRootPath, hasher, logger, app.Configuration);
     }
     catch (Exception ex)
     {
