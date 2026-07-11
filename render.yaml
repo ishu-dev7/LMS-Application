@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: sharemarketlms-api
+    runtime: docker
+    dockerfilePath: ./backend/ShareMarketLMS.Api/Dockerfile
+    dockerContext: ./backend/ShareMarketLMS.Api
+    branch: main
+    autoDeploy: true
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: Jwt__Issuer
+        value: ShareMarketLMS
+      - key: Jwt__Audience
+        value: ShareMarketLMS.Web
+      - key: Jwt__ExpiryMinutes
+        value: "1440"
+      - key: ConnectionStrings__Default
+        sync: false
+      - key: Jwt__Key
+        sync: false
+      - key: Cors__AllowedOrigins__0
+        sync: false
