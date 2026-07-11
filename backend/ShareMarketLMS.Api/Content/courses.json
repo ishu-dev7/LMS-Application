@@ -1,0 +1,72 @@
+{
+  "adminUser": {
+    "email": "admin@lms.local",
+    "displayName": "Administrator",
+    "password": "Admin@123"
+  },
+  "courses": [
+    {
+      "slug": "share-market-mastery",
+      "title": "Share Market Mastery",
+      "description": "The complete basic-to-advanced course on Indian markets (NSE/BSE): foundations, chart reading, market reading, risk management, strategies, F&O, and psychology.",
+      "category": "Share Market",
+      "order": 1,
+      "file": "course_start.md",
+      "parser": "courseStart"
+    },
+    {
+      "slug": "graph-market-reading",
+      "title": "Graph Reading & Market Reading — Field Guide",
+      "description": "A practical field guide in two parts: reading a single chart (candles, levels, patterns, volume, timeframes) and reading the whole market (breadth, flows, sectors, macro, sentiment).",
+      "category": "Share Market",
+      "order": 2,
+      "file": "graph_market_reading.md",
+      "parser": "fieldGuide"
+    },
+    {
+      "slug": "dotnet-framework",
+      "title": ".NET Framework",
+      "description": "The classic Windows .NET platform: CLR internals, C# essentials, memory & GC, ASP.NET MVC and ADO.NET/EF6 — plus a full interview preparation module.",
+      "category": ".NET",
+      "order": 3,
+      "file": "dotnet_framework.md",
+      "parser": "generic"
+    },
+    {
+      "slug": "dotnet-core",
+      "title": ".NET Core / Modern .NET",
+      "description": "Cross-platform modern .NET: ASP.NET Core pipeline, dependency injection, EF Core, async, hosting and deployment — plus interview Q&A from basics to architecture.",
+      "category": ".NET",
+      "order": 4,
+      "file": "dotnet_core.md",
+      "parser": "generic"
+    },
+    {
+      "slug": "react",
+      "title": "React",
+      "description": "Component thinking, hooks, state management, data fetching, performance patterns — plus the interview questions React developers actually get asked.",
+      "category": "Frontend",
+      "order": 5,
+      "file": "react.md",
+      "parser": "generic"
+    },
+    {
+      "slug": "angular",
+      "title": "Angular",
+      "description": "Components, DI, RxJS, routing, forms and change detection in the batteries-included framework — plus a complete interview prep module.",
+      "category": "Frontend",
+      "order": 6,
+      "file": "angular.md",
+      "parser": "generic"
+    },
+    {
+      "slug": "sql-server",
+      "title": "SQL Server",
+      "description": "From tables and joins to indexes, execution plans, transactions and stored procedures — plus the T-SQL interview questions that appear in every round.",
+      "category": "Database",
+      "order": 7,
+      "file": "sql_server.md",
+      "parser": "generic"
+    }
+  ]
+}

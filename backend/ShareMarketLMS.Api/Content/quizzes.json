@@ -1,0 +1,1020 @@
+{
+  "quizzes": [
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 1:",
+      "title": "Checkpoint — What the Market Actually Is",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "A stock closed at ₹500 and opens near ₹490 on its ex-dividend date after declaring a ₹10 dividend. What happened?",
+          "options": [
+            "Investors lost money overnight",
+            "Value moved from the share price into the cash dividend — wealth is unchanged",
+            "SEBI mandated a price correction",
+            "The company issued new shares, diluting the price"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the ex-date the buyer no longer gets the dividend, so the price adjusts down by roughly the dividend amount. Holders receive the ₹10 in cash — nothing is lost, value just changed form."
+        },
+        {
+          "text": "You bought shares using MIS (intraday product) and forgot to square off. What happens?",
+          "options": [
+            "The shares are delivered to your demat account",
+            "The position automatically converts to delivery for free",
+            "The broker force-closes the position around 3:15–3:20 PM and charges a penalty fee",
+            "The position carries over to the next trading day"
+          ],
+          "correctIndex": 2,
+          "explanation": "MIS positions must close the same day. If you don't square off, the broker's risk system auto-squares it off near session end and levies an auto-square-off charge."
+        },
+        {
+          "text": "If the person who sold you shares defaults and never delivers them, who makes you whole?",
+          "options": [
+            "SEBI compensates you directly",
+            "The clearing corporation, which guarantees every trade",
+            "Your broker absorbs the loss",
+            "NSDL reverses the transaction"
+          ],
+          "correctIndex": 1,
+          "explanation": "The clearing corporation steps in as counterparty to every trade — this guarantee is why you never need to worry about who is on the other side."
+        },
+        {
+          "text": "You place a limit buy order at ₹450 while the stock trades at ₹460. What happens?",
+          "options": [
+            "It executes immediately at ₹460",
+            "It is rejected as invalid",
+            "It waits in the order book and executes only if price comes to ₹450 or lower",
+            "It converts to a market order at the close"
+          ],
+          "correctIndex": 2,
+          "explanation": "A limit order gives you price control but no execution guarantee — it sits in the order book until price reaches your limit or you cancel it."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 2:",
+      "title": "Checkpoint — Costs & Taxation",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "Roughly what does a ₹50,000 delivery trade (buy + later sell) cost in total charges with a discount broker?",
+          "options": [
+            "Nothing — delivery brokerage is free",
+            "About ₹130 (~0.26%), mostly STT",
+            "About ₹1,300 (~2.6%)",
+            "Only the ₹15 DP charge"
+          ],
+          "correctIndex": 1,
+          "explanation": "Brokerage may be ₹0 but STT (0.1% both sides), transaction charges, stamp duty, GST and the DP charge add to roughly ₹130 — your position must rise ~0.26% just to break even."
+        },
+        {
+          "text": "How is profit from F&O trading taxed in India?",
+          "options": [
+            "As long-term capital gains",
+            "As short-term capital gains",
+            "As non-speculative business income at your slab rate",
+            "It is tax-exempt below ₹1 lakh"
+          ],
+          "correctIndex": 2,
+          "explanation": "F&O income is non-speculative business income — taxed at slab rates, with losses eligible for set-off and carry-forward, and audit requirements at high turnover."
+        },
+        {
+          "text": "Why do transaction costs matter far more to an intraday trader than an investor?",
+          "options": [
+            "Intraday charges are higher per trade",
+            "Costs scale with trade frequency — a few hundred rupees a day compounds to tens of thousands a year",
+            "Investors are exempt from STT",
+            "They don't — costs are identical"
+          ],
+          "correctIndex": 1,
+          "explanation": "Per-trade costs look tiny, but 3 round trips a day at ~₹80 each is roughly ₹60,000 a year on ₹50,000 capital — a structural hurdle the strategy must first out-earn."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 3:",
+      "title": "Checkpoint — Candlesticks & Price Action",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "After a decline into a known support zone, a candle prints a long lower wick and closes near its high. What does this tell you?",
+          "options": [
+            "Sellers are still in full control",
+            "Sellers pushed price down but buyers absorbed the selling and drove it back up — a hammer at a meaningful location",
+            "The stock will definitely rally tomorrow",
+            "Nothing — wicks are random noise"
+          ],
+          "correctIndex": 1,
+          "explanation": "The long lower wick shows rejected lower prices: sellers tried, buyers won. At support after a downtrend this is a hammer — meaningful because of its location. It raises probability; it guarantees nothing."
+        },
+        {
+          "text": "The exact same hammer candle appears in the middle of a directionless range. What is it worth?",
+          "options": [
+            "The same as at support — a hammer is a hammer",
+            "Very little — a candle's meaning comes mostly from its location (levels and trend context)",
+            "It becomes a bearish signal",
+            "It signals a breakout is coming"
+          ],
+          "correctIndex": 1,
+          "explanation": "Location is ~80% of a candle's meaning. The identical pattern at a watched support level and in the middle of nowhere are entirely different pieces of information."
+        },
+        {
+          "text": "A doji (open ≈ close) forms after a long, steep uptrend. The best reading is:",
+          "options": [
+            "Buyers remain dominant — add to longs",
+            "A stand-off between buyers and sellers — the trend may be tiring; watch the next candles",
+            "An immediate crash signal — short now",
+            "A data error in the chart"
+          ],
+          "correctIndex": 1,
+          "explanation": "A doji is indecision. After a strong trend it hints the dominant side is losing control — a warning to pay attention, not a standalone reversal signal."
+        },
+        {
+          "text": "What distinguishes a believable breakout candle through resistance from a suspect one?",
+          "options": [
+            "A wide body closing decisively beyond the level on high volume",
+            "Any candle whose wick pokes above the level",
+            "A gap at the open, regardless of close",
+            "The candle's colour"
+          ],
+          "correctIndex": 0,
+          "explanation": "Real breakouts look convinced: a decisive close beyond the level with expanded participation. Thin pokes above that close back inside are what false breakouts look like."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 4:",
+      "title": "Checkpoint — Support, Resistance & Trend",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "Why do support and resistance levels exist at all?",
+          "options": [
+            "Exchanges enforce price floors and ceilings",
+            "Human memory and regret — buyers, missers, and trapped shorts all have orders anchored to the same prices",
+            "Algorithms are programmed to defend round numbers only",
+            "They don't — levels are an illusion"
+          ],
+          "correctIndex": 1,
+          "explanation": "Levels are coordination points of memory: proud buyers add, regretful missers wait there, trapped traders exit at breakeven. That clustered order flow is what makes the level real — and partly self-fulfilling."
+        },
+        {
+          "text": "Resistance at ₹520 finally breaks and price rallies to ₹560. Price now returns to ₹520. What do you expect?",
+          "options": [
+            "₹520 acts as support — breakout buyers defend entries, missers get their second chance (role reversal)",
+            "₹520 is again resistance",
+            "The level is now meaningless",
+            "Price must fall back below ₹500"
+          ],
+          "correctIndex": 0,
+          "explanation": "Broken resistance tends to become support. The retest of a broken level is one of the highest-quality entry locations in trading."
+        },
+        {
+          "text": "An uptrend is objectively broken when:",
+          "options": [
+            "RSI drops below 50",
+            "Price closes red three days in a row",
+            "Price fails to make a new high AND then takes out the last higher low",
+            "Volume declines for a week"
+          ],
+          "correctIndex": 2,
+          "explanation": "Trend structure is the definition: higher highs and higher lows. When the last higher low breaks, the structure itself has failed — no indicator required."
+        },
+        {
+          "text": "A support level has been tested five times in quick succession, with bounces getting smaller. The likely outcome is:",
+          "options": [
+            "It is now stronger than ever — buy the sixth test aggressively",
+            "It will hold forever — five tests prove it",
+            "It is weakening — each test consumes the resting buy orders, and grind-through breaks become likely",
+            "Nothing can be inferred"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each test eats the buy orders sitting at the zone. Repeated rapid tests with shrinking bounces usually precede the level quietly giving way."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 5:",
+      "title": "Checkpoint — Volume, MAs & Indicators",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "A stock breaks out above a 3-month range on volume well below its recent average. Your read:",
+          "options": [
+            "Perfect breakout — buy immediately",
+            "Suspect — low participation makes it a false-breakout candidate; wait for confirmation or the retest",
+            "Volume is irrelevant to breakouts",
+            "Short it immediately"
+          ],
+          "correctIndex": 1,
+          "explanation": "A breakout is a claim that demand overwhelmed supply; thin volume undermines the claim. Believable breakouts typically come on 2–3× average volume."
+        },
+        {
+          "text": "RSI on a strongly trending stock has been above 70 for three weeks while price keeps rising. The correct interpretation:",
+          "options": [
+            "Overbought — sell or short now",
+            "The indicator is broken",
+            "'Overbought' means rising fast — in strong uptrends RSI can stay elevated for long periods; the textbook sell rule loses money here",
+            "The uptrend must end within days"
+          ],
+          "correctIndex": 2,
+          "explanation": "RSI >70 measures fast ascent, not an imminent fall. Mechanically selling 'overbought' in trends is a well-documented way to fight strong markets."
+        },
+        {
+          "text": "What is the correct reading order for any chart?",
+          "options": [
+            "Indicators → volume → levels → trend",
+            "Trend structure → levels → volume → indicators last",
+            "Volume → indicators → candles",
+            "Whatever catches the eye first"
+          ],
+          "correctIndex": 1,
+          "explanation": "Structure and levels are the meal, indicators the seasoning. Starting with indicators is the classic beginner inversion — they are derivatives of the same price data."
+        },
+        {
+          "text": "Price grinds to new highs while volume shrinks at each new high. This suggests:",
+          "options": [
+            "Extremely healthy demand",
+            "Fewer participants at each new price — the trend is running on fumes",
+            "An imminent stock split",
+            "Institutional accumulation"
+          ],
+          "correctIndex": 1,
+          "explanation": "Rising price on falling volume means the advance is attracting less money at each step — a classic caution sign, especially when paired with other warnings."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 6:",
+      "title": "Checkpoint — Macro, Flows & Breadth",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "Why does rising crude oil hurt Indian markets specifically?",
+          "options": [
+            "India exports crude and loses revenue",
+            "India imports ~85% of its crude — costlier oil worsens the trade deficit, weakens the INR and feeds inflation",
+            "It only affects airline stocks",
+            "It doesn't — crude is irrelevant to equities"
+          ],
+          "correctIndex": 1,
+          "explanation": "The import bill flows through the currency, inflation and corporate margins (paints, aviation, tyres). Sustained expensive crude has historically coincided with Indian market stress."
+        },
+        {
+          "text": "NIFTY makes a new all-time high, but the advance/decline ratio is negative and fewer stocks sit above their 200-DMA than a month ago. This is:",
+          "options": [
+            "A broad, healthy rally",
+            "A narrow rally carried by heavyweights — fragile, a classic late-cycle warning",
+            "Proof the bull market will continue",
+            "Impossible — breadth always confirms the index"
+          ],
+          "correctIndex": 1,
+          "explanation": "Weighted indices can be dragged up by a handful of large stocks while the average stock declines. Breadth divergence like this has preceded most major tops."
+        },
+        {
+          "text": "FIIs sold ₹2,000 cr today while DIIs bought ₹1,800 cr. The most useful takeaway:",
+          "options": [
+            "Panic — foreigners know something",
+            "One day is noise; watch the 20-day cumulative flows. SIP-driven DII buying is a structural stabilizer against FII exits",
+            "DIIs are always wrong",
+            "The market must fall tomorrow"
+          ],
+          "correctIndex": 1,
+          "explanation": "Single-day flow data is noise; sustained multi-week one-sided flow is signal. Domestic SIP money has made post-2020 corrections shallower than the FII-selling headlines suggest."
+        },
+        {
+          "text": "India VIX spikes above 25 during a sharp market fall. Historically this has often marked:",
+          "options": [
+            "The beginning of a multi-year bear market, always",
+            "Nothing — VIX is random",
+            "Panic that frequently occurs near durable bottoms — a time to be alert for opportunity, not to panic-sell",
+            "A signal to take maximum leverage immediately"
+          ],
+          "correctIndex": 2,
+          "explanation": "Elevated VIX = fear fully priced. Many durable bottoms have formed in high-VIX panics — use it to adjust aggression and expectations, not as a standalone buy trigger."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 7:",
+      "title": "Checkpoint — Risk Management",
+      "passPercent": 75,
+      "questions": [
+        {
+          "text": "Capital ₹2,00,000, risk 1% per trade. Entry ₹450, stop-loss ₹438. How many shares?",
+          "options": [
+            "444 shares (all capital)",
+            "166 shares — ₹2,000 risk ÷ ₹12 stop distance",
+            "74 shares",
+            "2,000 shares"
+          ],
+          "correctIndex": 1,
+          "explanation": "Quantity = (Capital × Risk%) ÷ (Entry − Stop) = ₹2,000 ÷ ₹12 ≈ 166. Position size comes from the stop distance, never from conviction."
+        },
+        {
+          "text": "A system wins 45% of the time with average win ₹3,000 and average loss ₹1,500. Its expectancy per trade is:",
+          "options": [
+            "Negative — a 45% win rate always loses",
+            "+₹525 per trade: (0.45 × 3000) − (0.55 × 1500)",
+            "+₹1,350 per trade",
+            "Zero"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expectancy = (Win% × AvgWin) − (Loss% × AvgLoss) = 1350 − 825 = +₹525. Win rate alone is meaningless; the win/loss size ratio completes the math."
+        },
+        {
+          "text": "After a 50% drawdown, what gain is needed just to get back to breakeven?",
+          "options": ["50%", "75%", "100%", "150%"],
+          "correctIndex": 2,
+          "explanation": "Losses are asymmetric: half your capital gone means the remainder must double. This is why survival — capping drawdowns — is the first strategy."
+        },
+        {
+          "text": "You feel extremely confident about a trade. How should that affect position size?",
+          "options": [
+            "Double the size — conviction is an edge",
+            "Not at all — size comes from the stop distance and the fixed risk %; feelings are not a sizing input",
+            "Skip the stop-loss since you're sure",
+            "Risk 10% instead of 1%"
+          ],
+          "correctIndex": 1,
+          "explanation": "Confidence has no statistical edge, and 'sure things' fail regularly. The sizing formula exists precisely to protect you from your own conviction."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 8:",
+      "title": "Checkpoint — Strategy Building",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "What is the minimum evidence before trading a strategy with real money?",
+          "options": [
+            "It worked on the last 3 trades you eyeballed",
+            "A hand-logged backtest of 50–100 historical setups with computed expectancy, then paper trading, then minimum-size live trading",
+            "A YouTube video recommended it",
+            "One profitable week of paper trading"
+          ],
+          "correctIndex": 1,
+          "explanation": "Small samples lie. The protocol — 50–100 logged setups, computed statistics, paper trading, tiny live size — is what separates a tested system from a hunch."
+        },
+        {
+          "text": "Which section of a written strategy document typically saves the most money?",
+          "options": [
+            "The entry trigger",
+            "The indicator settings",
+            "The 'when NOT to trade' rules (events, regimes, max open positions)",
+            "The profit target formula"
+          ],
+          "correctIndex": 2,
+          "explanation": "Most large losses come from trading in conditions the strategy was never designed for — results days, violent ranges, correlated overexposure. Explicit no-trade rules prevent them."
+        },
+        {
+          "text": "Why must the strategy be written down before trading it?",
+          "options": [
+            "SEBI requires it",
+            "Because once real money moves, the brain becomes a rationalization machine — calm pre-made rules beat adrenalized decisions",
+            "To show other traders",
+            "It doesn't need to be written"
+          ],
+          "correctIndex": 1,
+          "explanation": "In the moment, you will convince yourself of almost anything. The written document is the calm version of you overruling the emotional version."
+        },
+        {
+          "text": "What does paper trading test — and NOT test?",
+          "options": [
+            "It tests everything perfectly",
+            "It tests your process and rules in real time, but not your emotions — paper losses don't hurt",
+            "It tests emotions but not process",
+            "It is useless"
+          ],
+          "correctIndex": 1,
+          "explanation": "Paper trading validates mechanics and discipline of process. The emotional layer only appears with real money — which is why the next step is live trading at minimum size."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 9:",
+      "title": "Checkpoint — Futures & Options",
+      "passPercent": 75,
+      "questions": [
+        {
+          "text": "The maximum possible loss for an option BUYER is:",
+          "options": [
+            "Unlimited",
+            "The premium paid",
+            "The full contract value",
+            "The margin posted"
+          ],
+          "correctIndex": 1,
+          "explanation": "A buyer holds a right, not an obligation — the worst case is the option expiring worthless, losing exactly the premium. Sellers carry the larger, potentially open-ended risk."
+        },
+        {
+          "text": "You buy a call before quarterly results. The company beats estimates and the stock rises 2% — yet your option FALLS in value. Why?",
+          "options": [
+            "The exchange made an error",
+            "IV crush — implied volatility was inflated before the event and collapsed after, outweighing the favourable move",
+            "Theta reversed direction",
+            "Calls always fall after results"
+          ],
+          "correctIndex": 1,
+          "explanation": "Event options price in big expected moves. When the event passes, that volatility premium deflates (vega loss). You must be right on direction, size AND timing to beat inflated IV."
+        },
+        {
+          "text": "Theta measures:",
+          "options": [
+            "Sensitivity to interest rates",
+            "The premium lost per day to time decay — accelerating near expiry; the seller's income, the buyer's cost",
+            "The probability of profit",
+            "How fast delta changes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Options are melting assets. A sideways week costs a buyer money while being 'not wrong' — and pays the seller. Decay accelerates in the final 1–2 weeks."
+        },
+        {
+          "text": "Bull call spread: buy 22,000 call at ₹200, sell 22,200 call at ₹110. Max loss, max profit, breakeven?",
+          "options": [
+            "Loss ₹200, profit unlimited, breakeven 22,200",
+            "Loss ₹90 (net cost), profit ₹110 (200-point spread − 90), breakeven 22,090",
+            "Loss ₹110, profit ₹90, breakeven 22,110",
+            "Loss unlimited, profit ₹110, breakeven 22,000"
+          ],
+          "correctIndex": 1,
+          "explanation": "Net debit = 200 − 110 = ₹90 = max loss. Max profit = spread width (200) − net debit = ₹110, above 22,200. Breakeven = 22,000 + 90 = 22,090. Everything capped and known — the point of defined-risk structures."
+        },
+        {
+          "text": "Why can heavy call open interest at a strike act like resistance?",
+          "options": [
+            "SEBI blocks trading above such strikes",
+            "Option writers who sold those calls defend the strike — their hedging and interest create supply near it",
+            "Retail buyers always sell there",
+            "It cannot — OI is meaningless"
+          ],
+          "correctIndex": 1,
+          "explanation": "Writers of those calls profit if price stays below the strike and act (hedging, rolling, defending) in ways that add supply near it. Useful context — never a guarantee."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 10:",
+      "title": "Checkpoint — Trading Psychology",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "Averaging down on a losing trade means you systematically have:",
+          "options": [
+            "Maximum size in your worst-performing ideas and minimum size in your best",
+            "A lower average price, which is always good",
+            "Better risk management",
+            "Higher win rate with no downside"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding to losers concentrates capital precisely where the market is telling you you're wrong. The professional habit is the inverse: add only to winners."
+        },
+        {
+          "text": "What should you grade yourself on weekly?",
+          "options": [
+            "Profit and loss only",
+            "Rule-following (process adherence) — a rule-following loss is a good trade; a lucky rule-breaking win is a bad one",
+            "Number of trades taken",
+            "How you feel about the market"
+          ],
+          "correctIndex": 1,
+          "explanation": "You control process, not outcomes. Rewarding lucky rule-breaks trains your brain to gamble; the edge only expresses itself across a series of disciplined trades."
+        },
+        {
+          "text": "The practical antidote to revenge trading is:",
+          "options": [
+            "Trading bigger to win it back faster",
+            "A hard daily-loss limit — once hit, close the terminal",
+            "Switching to a 1-minute chart",
+            "There is none"
+          ],
+          "correctIndex": 1,
+          "explanation": "After a loss the urge to 'win it back' produces oversized, low-quality trades. A pre-committed daily stop removes the decision from the heated moment."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 11:",
+      "title": "Checkpoint — Quant Thinking & Fundamentals",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "A company reports strong, growing profits, but operating cash flow is persistently far below reported profit. This is:",
+          "options": [
+            "Normal for all companies",
+            "A classic red flag — profits are opinion, cash is fact; the divergence deserves investigation",
+            "A buying opportunity, always",
+            "Proof of good management"
+          ],
+          "correctIndex": 1,
+          "explanation": "Earnings can be shaped by accounting choices; cash flow is much harder to fake. Sustained profit-vs-cash divergence has preceded many blowups."
+        },
+        {
+          "text": "You study a list of today's most successful traders to learn their common habits. The main statistical trap is:",
+          "options": [
+            "Sample size is too large",
+            "Survivorship bias — you can't see the many who used the same habits and went broke",
+            "Their habits are secret",
+            "There is no trap"
+          ],
+          "correctIndex": 1,
+          "explanation": "The losers with identical behaviours vanished from view. A large enough crowd flipping coins always produces a few 'geniuses' — Taleb's core point."
+        },
+        {
+          "text": "Graham's 'margin of safety' means:",
+          "options": [
+            "Only buying stocks with stop-losses",
+            "Buying far enough below your estimate of value that being partly wrong still turns out fine",
+            "Diversifying across 100 stocks",
+            "Only buying government-backed companies"
+          ],
+          "correctIndex": 1,
+          "explanation": "All valuation is uncertain. The margin of safety is the buffer between price and estimated value that absorbs your errors — the core idea of value investing."
+        }
+      ]
+    },
+    {
+      "courseSlug": "share-market-mastery",
+      "moduleMatch": "Module 12:",
+      "title": "Checkpoint — Systemization",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "A backtest accidentally uses each day's closing price to decide a trade entered that same morning. This bug is called:",
+          "options": [
+            "Slippage",
+            "Lookahead bias — using information unavailable at decision time; the #1 silent backtest killer",
+            "Overfitting",
+            "Survivorship bias"
+          ],
+          "correctIndex": 1,
+          "explanation": "Any leak of future information into past decisions inflates results invisibly. Guarding against lookahead is the first discipline of backtesting."
+        },
+        {
+          "text": "Your strategy shows amazing results after tuning 12 parameters on 3 years of data. The likely reality:",
+          "options": [
+            "You found the holy grail",
+            "The rules have memorized historical noise (overfitting) — validate with out-of-sample and walk-forward testing before believing it",
+            "More parameters always mean more robustness",
+            "It will work exactly as backtested"
+          ],
+          "correctIndex": 1,
+          "explanation": "Enough knobs will fit any historical dataset perfectly and fail live. Out-of-sample and walk-forward validation are the honesty checks."
+        }
+      ]
+    },
+    {
+      "courseSlug": "graph-market-reading",
+      "moduleMatch": "Part I",
+      "title": "Checkpoint — Graph Reading",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "What is the FIRST step in the fixed chart-reading order?",
+          "options": [
+            "Check RSI and MACD",
+            "Zoom out to the weekly/monthly chart for the multi-year context",
+            "Draw trendlines on the 15-minute chart",
+            "Count candlestick patterns"
+          ],
+          "correctIndex": 1,
+          "explanation": "Context first: weekly/monthly story → daily trend structure → levels → volume → candles at key spots → indicators last. Starting at indicators is the classic inversion."
+        },
+        {
+          "text": "Price pierces above a well-watched resistance intraday, finds no follow-through, and closes back below it. This false break is:",
+          "options": [
+            "A buy signal — the breakout started",
+            "Meaningless noise",
+            "One of the most tradeable events on charts — trapped breakout buyers must unwind, fuelling a move DOWN",
+            "Proof the level doesn't exist"
+          ],
+          "correctIndex": 2,
+          "explanation": "Everyone who bought the 'breakout' is now losing and sitting overhead as supply. Their forced exits fuel the reversal — the logic behind trading traps, and springs at support."
+        },
+        {
+          "text": "How many touches does a trendline need before you should trust it?",
+          "options": [
+            "One",
+            "Two to draw it, three to trust it",
+            "Ten",
+            "Trendlines need no validation"
+          ],
+          "correctIndex": 1,
+          "explanation": "Two points define a line — anything can connect two points. The third touch shows the market is actually respecting it."
+        },
+        {
+          "text": "In a bull flag, what should volume do during the flag (the pullback phase)?",
+          "options": [
+            "Expand sharply",
+            "Shrink — quiet profit-taking, not urgent selling; then expand again on the breakout",
+            "Stay identical to the pole",
+            "Volume is irrelevant to flags"
+          ],
+          "correctIndex": 1,
+          "explanation": "The tell that a pullback is rest rather than reversal is drying-up volume. Expanding volume on the down-leg suggests distribution instead."
+        },
+        {
+          "text": "You entered a swing trade off a daily-chart setup. It moves against you, so you switch to the 15-minute chart to find reasons to stay in. This is:",
+          "options": [
+            "Good adaptive management",
+            "Timeframe demotion — the timeframe that put you in is the only one allowed to take you out",
+            "Multi-timeframe analysis done correctly",
+            "Required risk management"
+          ],
+          "correctIndex": 1,
+          "explanation": "Hunting a lower timeframe for hope is rationalizing a losing position. The daily setup defined the trade and its stop; the daily chart judges it."
+        }
+      ]
+    },
+    {
+      "courseSlug": "graph-market-reading",
+      "moduleMatch": "Part II",
+      "title": "Checkpoint — Market Reading",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "Roughly what share of a typical stock's daily move is explained by the overall market and its sector rather than the company itself?",
+          "options": [
+            "About 10%",
+            "About a quarter",
+            "Around three-quarters — which is why the tide matters more than the boat",
+            "None — stocks move independently"
+          ],
+          "correctIndex": 2,
+          "explanation": "Most of a stock's move is market + sector. Great chart reads fail in bad markets, and mediocre setups work in strong ones — hence: market state first, stock second."
+        },
+        {
+          "text": "The index makes a new high while the % of stocks above their 200-DMA makes a lower high. This divergence means:",
+          "options": [
+            "Nothing — the index is all that matters",
+            "The army is thinning behind the flag — a classic late-cycle breadth warning that has preceded most major tops",
+            "A guaranteed crash within a week",
+            "Breadth data is broken"
+          ],
+          "correctIndex": 1,
+          "explanation": "Fewer soldiers backing each new advance = a narrowing rally. Not a timing signal on its own, but a warning to reduce aggression and watch structure."
+        },
+        {
+          "text": "FMCG, pharma and IT (defensives) start strongly outperforming while the index is still near highs. The market-reading interpretation:",
+          "options": [
+            "Pure coincidence",
+            "Institutions are rotating into safety — the crowd is scared even though the index hasn't fallen yet",
+            "A signal of maximum risk appetite",
+            "Defensives lead only in bull markets"
+          ],
+          "correctIndex": 1,
+          "explanation": "Money hiding in stable-earnings sectors is defensive behaviour wearing a bullish mask. Sector rotation often tells the truth before the index does."
+        },
+        {
+          "text": "The most useful way to read FII flow data is:",
+          "options": [
+            "React to every single day's number",
+            "Track the ~20-day cumulative flow — one day is noise; a month of one-sided flow is a trend",
+            "Ignore it entirely",
+            "Only watch F&O position headlines"
+          ],
+          "correctIndex": 1,
+          "explanation": "Sustained multi-week FII selling has accompanied nearly every meaningful Indian correction; single-day figures whipsaw. Cash-market cumulative flow is the signal."
+        },
+        {
+          "text": "Very low India VIX (~10–12) for weeks means:",
+          "options": [
+            "Guaranteed continued calm",
+            "Complacency — often the fuel for shocks; also when buying options (protection) is cheapest",
+            "Panic is imminent within days",
+            "The VIX is malfunctioning"
+          ],
+          "correctIndex": 1,
+          "explanation": "Low VIX = the market prices in very little risk. That calm itself is information: protection is cheap, positioning is relaxed, and surprises hit harder."
+        }
+      ]
+    },
+    {
+      "courseSlug": "dotnet-framework",
+      "moduleMatch": "Interview Preparation",
+      "title": "Checkpoint — .NET Framework Interview Readiness",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "What does the JIT compiler do?",
+          "options": [
+            "Compiles C# source code into IL at build time",
+            "Translates IL into native machine code at runtime, method by method on first call",
+            "Optimizes SQL queries",
+            "Verifies strong-name signatures"
+          ],
+          "correctIndex": 1,
+          "explanation": "The C# compiler produces IL in assemblies; the CLR's Just-In-Time compiler turns that IL into native code as methods are first executed."
+        },
+        {
+          "text": "Inside a catch block, what is the difference between `throw;` and `throw ex;`?",
+          "options": [
+            "No difference",
+            "`throw;` rethrows preserving the original stack trace; `throw ex;` resets the stack trace, destroying the debugging trail",
+            "`throw ex;` is faster",
+            "`throw;` swallows the exception"
+          ],
+          "correctIndex": 1,
+          "explanation": "`throw ex;` makes the exception appear to originate at the rethrow site. Use `throw;` (or wrap with InnerException) to keep the trail."
+        },
+        {
+          "text": "A struct is assigned to another variable and one field of the copy is changed. What happens to the original?",
+          "options": [
+            "The original changes too — they share memory",
+            "Nothing — value types copy by value, so the two are independent",
+            "A runtime exception occurs",
+            "The original becomes null"
+          ],
+          "correctIndex": 1,
+          "explanation": "Value types (structs) copy their entire data on assignment. Reference types would share the same object — this distinction underpins the whole .NET memory model."
+        },
+        {
+          "text": "Why expose an event instead of a public delegate field?",
+          "options": [
+            "Events are faster",
+            "An event lets outside code only subscribe/unsubscribe (+=/-=) — it cannot invoke the handler chain or overwrite other subscribers",
+            "Delegates cannot reference instance methods",
+            "Events work across AppDomains"
+          ],
+          "correctIndex": 1,
+          "explanation": "A public delegate field could be invoked or reassigned by anyone, breaking the publisher's control. The event keyword restricts access to subscription only."
+        },
+        {
+          "text": "Why does the GC collect Gen 0 far more often than Gen 2?",
+          "options": [
+            "Gen 0 objects are larger",
+            "Most objects die young — collecting the newest generation frequently reclaims the most memory for the least work",
+            "Gen 2 is stored on disk",
+            "It's arbitrary"
+          ],
+          "correctIndex": 1,
+          "explanation": "The generational hypothesis: short-lived objects dominate. Cheap, frequent Gen 0 collections handle them; expensive full (Gen 2) collections stay rare."
+        }
+      ]
+    },
+    {
+      "courseSlug": "dotnet-core",
+      "moduleMatch": "Interview Preparation",
+      "title": "Checkpoint — .NET Core Interview Readiness",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "In the middleware pipeline, why must UseAuthentication come before UseAuthorization?",
+          "options": [
+            "Alphabetical convention",
+            "Authorization checks the user that authentication established — reversed, every request is anonymous and gets rejected or passed wrongly",
+            "It doesn't matter",
+            "Authorization creates the user"
+          ],
+          "correctIndex": 1,
+          "explanation": "Authentication answers 'who are you' and populates HttpContext.User; authorization answers 'are you allowed'. Order defines semantics in the pipeline."
+        },
+        {
+          "text": "Why is DbContext registered as Scoped rather than Singleton?",
+          "options": [
+            "Singletons are deprecated",
+            "DbContext is not thread-safe and tracks entities — one instance per request gives an isolated unit of work; a singleton would be shared across concurrent requests and leak tracked entities",
+            "Scoped is faster to construct",
+            "EF requires transient"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scoped = one context, one change tracker, one implicit unit of work per HTTP request — matching web semantics and avoiding thread-safety crashes."
+        },
+        {
+          "text": "What is a captive dependency?",
+          "options": [
+            "A NuGet package with a restrictive license",
+            "A scoped/transient service injected into a singleton — the singleton holds that one instance forever, breaking its lifetime",
+            "A circular reference between services",
+            "A service that can't be mocked"
+          ],
+          "correctIndex": 1,
+          "explanation": "The singleton 'captures' the shorter-lived service. Fix: inject IServiceScopeFactory and create a scope per operation."
+        },
+        {
+          "text": "async/await improves web server scalability because…",
+          "options": [
+            "await makes the database respond faster",
+            "an awaited I/O call releases the thread back to the pool, so the same threads serve many more concurrent requests",
+            "async methods run on the GPU",
+            "it doesn't — it's only for UI apps"
+          ],
+          "correctIndex": 1,
+          "explanation": "The request isn't faster; the server survives concurrency. Blocking with .Result holds threads through I/O waits and collapses throughput under load."
+        },
+        {
+          "text": "appsettings.json sets Logging level to Warning; an environment variable sets it to Debug. What wins?",
+          "options": [
+            "appsettings.json — files always win",
+            "The environment variable — later configuration providers override earlier ones",
+            "Neither — it throws a conflict error",
+            "Whichever is alphabetically first"
+          ],
+          "correctIndex": 1,
+          "explanation": "Configuration is layered: appsettings.json → per-environment JSON → user secrets → environment variables → command line, with later sources overriding."
+        }
+      ]
+    },
+    {
+      "courseSlug": "react",
+      "moduleMatch": "Interview Preparation",
+      "title": "Checkpoint — React Interview Readiness",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "Calling setCount(count + 1) twice in one click handler increments once. Why?",
+          "options": [
+            "React has a bug",
+            "Updates are batched and both calls closed over the same stale count — use the functional form setCount(c => c + 1)",
+            "onClick only allows one state update",
+            "The component must be a class"
+          ],
+          "correctIndex": 1,
+          "explanation": "Both calls compute stale+1 from the same captured value. The functional updater receives the latest state and composes correctly."
+        },
+        {
+          "text": "Why is the array index a bad key for list items?",
+          "options": [
+            "Indexes are slow to compute",
+            "On insert/remove/reorder, item identity shifts position — component state (inputs, selection) sticks to positions instead of items",
+            "Keys must be strings",
+            "It's fine — React recommends it"
+          ],
+          "correctIndex": 1,
+          "explanation": "Keys let reconciliation track items across renders. Index keys break identity when the list changes shape — the classic 'typed text jumped to another row' bug."
+        },
+        {
+          "text": "What is the cleanup function returned from useEffect for?",
+          "options": [
+            "Garbage collecting the component",
+            "Undoing the effect (unsubscribe, clear timers, abort fetches) — it runs before each re-run and at unmount, preventing leaks and race conditions",
+            "Resetting all state",
+            "It's called only on errors"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each effect execution pairs with a cleanup. Miss it and you leak subscriptions/timers and let stale async results overwrite fresh ones."
+        },
+        {
+          "text": "Why must hooks be called unconditionally at the top level?",
+          "options": [
+            "For code style consistency",
+            "React identifies each hook by call order per render — a conditional call shifts the order and every later hook reads the wrong state slot",
+            "Hooks are slow inside if statements",
+            "To enable tree-shaking"
+          ],
+          "correctIndex": 1,
+          "explanation": "Hook state is positional. Same order every render is the contract that makes useState/useEffect work at all — hence the lint rule."
+        },
+        {
+          "text": "React.memo on a child does nothing because the parent passes an inline object prop. Why?",
+          "options": [
+            "memo only works with strings",
+            "The inline object is a new reference every render, so memo's shallow comparison always sees changed props — stabilize it with useMemo/useCallback",
+            "memo needs a special key",
+            "Objects can't be props"
+          ],
+          "correctIndex": 1,
+          "explanation": "memo skips re-render only when props are shallow-equal. New object/function identities defeat it — referential stability is the other half of the optimization."
+        }
+      ]
+    },
+    {
+      "courseSlug": "angular",
+      "moduleMatch": "Interview Preparation",
+      "title": "Checkpoint — Angular Interview Readiness",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "For a typeahead search box calling an API per keystroke, which RxJS operator maps keystrokes to HTTP calls correctly?",
+          "options": [
+            "mergeMap — run all requests in parallel",
+            "switchMap — cancel the previous request; only the latest query's result matters",
+            "concatMap — queue every request in order",
+            "exhaustMap — ignore new keystrokes while a request runs"
+          ],
+          "correctIndex": 1,
+          "explanation": "switchMap unsubscribes the stale inner observable, preventing out-of-order results overwriting fresh ones. (Pair with debounceTime + distinctUntilChanged.)"
+        },
+        {
+          "text": "Why is the async pipe preferred over manual subscribe in components?",
+          "options": [
+            "It's shorter to type, nothing more",
+            "It subscribes, renders emissions, works with OnPush, and auto-unsubscribes on destroy — eliminating the most common Angular memory leak",
+            "Manual subscriptions are deprecated",
+            "It caches HTTP responses"
+          ],
+          "correctIndex": 1,
+          "explanation": "Forgotten manual subscriptions keep components alive after destroy. The async pipe manages the whole subscription lifecycle for you."
+        },
+        {
+          "text": "Why does initialization code belong in ngOnInit rather than the constructor?",
+          "options": [
+            "Constructors can't call methods",
+            "The constructor is for DI wiring; @Input values aren't set yet — ngOnInit runs after inputs are bound",
+            "ngOnInit is faster",
+            "It makes no difference"
+          ],
+          "correctIndex": 1,
+          "explanation": "Fetches or logic depending on inputs must wait until Angular has bound them — that's ngOnInit's contract."
+        },
+        {
+          "text": "With ChangeDetectionStrategy.OnPush, a component's list doesn't update after items.push(newItem). Why?",
+          "options": [
+            "OnPush disables lists",
+            "push mutates the same array reference — OnPush checks input references; create a new array ([...items, newItem]) instead",
+            "The zone is broken",
+            "push is asynchronous"
+          ],
+          "correctIndex": 1,
+          "explanation": "OnPush skips the component unless an input reference changes (or an event/async pipe fires inside). Immutable updates are the required discipline."
+        },
+        {
+          "text": "What does [(ngModel)]=\"qty\" expand to?",
+          "options": [
+            "A directive that watches the DOM with polling",
+            "[ngModel]=\"qty\" (ngModelChange)=\"qty = $event\" — a property binding plus an event binding",
+            "A WebSocket connection to the model",
+            "It's a special compiler primitive with no expansion"
+          ],
+          "correctIndex": 1,
+          "explanation": "Two-way binding is sugar: data flows in via property binding, out via the change event — the 'banana in a box' question."
+        }
+      ]
+    },
+    {
+      "courseSlug": "sql-server",
+      "moduleMatch": "Interview Preparation",
+      "title": "Checkpoint — SQL Server Interview Readiness",
+      "passPercent": 70,
+      "questions": [
+        {
+          "text": "WHERE vs HAVING — which is true?",
+          "options": [
+            "They are interchangeable",
+            "WHERE filters rows before grouping; HAVING filters groups after aggregation — SUM conditions can only go in HAVING",
+            "HAVING is faster than WHERE",
+            "WHERE only works with indexes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Aggregates don't exist until GROUP BY runs, so conditions on them must be in HAVING; row-level filters belong in WHERE (cheaper — fewer rows reach the group stage)."
+        },
+        {
+          "text": "After LEFT JOIN Orders o, adding WHERE o.Status = 'Paid' does what?",
+          "options": [
+            "Nothing unusual",
+            "Silently converts it to an INNER JOIN — NULL rows from unmatched customers are filtered out; put the condition in the ON clause to keep them",
+            "Throws a syntax error",
+            "Makes it a FULL OUTER JOIN"
+          ],
+          "correctIndex": 1,
+          "explanation": "Unmatched left rows have o.Status = NULL, and NULL = 'Paid' is not true — so those rows vanish. Right-side filters preserve LEFT semantics only in ON."
+        },
+        {
+          "text": "How many clustered indexes can a table have, and why?",
+          "options": [
+            "As many as you like",
+            "One — the clustered index IS the table, physically ordered by its key; data can only be stored in one order",
+            "Two — one ascending, one descending",
+            "Zero — clustered indexes are views"
+          ],
+          "correctIndex": 1,
+          "explanation": "The clustered index's leaf level is the data itself. Nonclustered indexes are separate structures pointing back to it — you can have many of those."
+        },
+        {
+          "text": "WHERE YEAR(OrderDate) = 2026 performs badly on an indexed OrderDate column because…",
+          "options": [
+            "YEAR() is a slow function",
+            "The function on the column makes the predicate non-SARGable — the index can't seek; rewrite as OrderDate >= '2026-01-01' AND OrderDate < '2027-01-01'",
+            "2026 is in the future",
+            "Dates can't be indexed"
+          ],
+          "correctIndex": 1,
+          "explanation": "The engine would have to compute YEAR() for every row. Keeping the column bare turns it into an index range seek."
+        },
+        {
+          "text": "NOT IN (SELECT Email FROM Blocked) returns zero rows unexpectedly. The likely cause?",
+          "options": [
+            "The table is too large",
+            "The subquery returns a NULL — with three-valued logic, NOT IN against a NULL can never be true; use NOT EXISTS instead",
+            "NOT IN needs an index",
+            "Emails can't be compared"
+          ],
+          "correctIndex": 1,
+          "explanation": "x NOT IN (a, b, NULL) evaluates to UNKNOWN for every row. NOT EXISTS handles NULLs sanely and can short-circuit — the standard fix."
+        }
+      ]
+    }
+  ]
+}

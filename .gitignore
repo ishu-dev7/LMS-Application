@@ -1,0 +1,44 @@
+# ── .NET ──────────────────────────────────────────────────
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.nupkg
+appsettings.Development.json
+appsettings.local.json
+
+# ── Node / frontend & mobile ──────────────────────────────
+node_modules/
+dist/
+.expo/
+.expo-shared/
+
+# ── Expo / React Native build outputs ─────────────────────
+android/
+ios/
+*.apk
+*.aab
+*.ipa
+*.keystore
+mobile/.expo/
+
+# ── Environment & secrets ─────────────────────────────────
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# ── Uploads (user-uploaded lesson attachments) ────────────
+backend/ShareMarketLMS.Api/uploads/
+
+# ── OS / IDE ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/settings.json
+*.swp
+
+# ── Logs ──────────────────────────────────────────────────
+*.log
+npm-debug.log*
