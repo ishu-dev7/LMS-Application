@@ -41,32 +41,32 @@ builder.Services.AddCors(o => o.AddPolicy("frontend", p =>
 var app = builder.Build();
 
 // Create the database and seed course content from the markdown docs on first run.
+// Retries handle cloud DB cold-starts (e.g. Neon free tier spins up in ~5 s).
 using (var scope = app.Services.CreateScope())
 {
     var logger = scope.ServiceProvider.GetRequiredService<ILoggerFactory>().CreateLogger("Startup");
-    try
+    const int MaxRetries = 6;
+    for (var attempt = 1; attempt <= MaxRetries; attempt++)
     {
-        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        db.Database.EnsureCreated();
-        // Additive migration: create CourseEnrollments if it doesn't exist yet.
-        db.Database.ExecuteSqlRaw("""
-            CREATE TABLE IF NOT EXISTS "CourseEnrollments" (
-                "Id"            SERIAL PRIMARY KEY,
-                "UserId"        INT NOT NULL REFERENCES "Users"("Id") ON DELETE CASCADE,
-                "CourseId"      INT NOT NULL REFERENCES "Courses"("Id") ON DELETE CASCADE,
-                "EnrolledAtUtc" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-                CONSTRAINT "UQ_CourseEnrollment" UNIQUE ("UserId", "CourseId")
-            )
-            """);
-        var hasher = scope.ServiceProvider.GetRequiredService<PasswordHasher>();
-        ContentSeeder.Seed(db, app.Environment.ContentRootPath, hasher, logger, app.Configuration);
-    }
-    catch (Exception ex)
-    {
-        logger.LogError(ex,
-            "Database setup failed. Check the 'ConnectionStrings:Default' value in appsettings.json — " +
-            "the default expects SQL Server LocalDB ((localdb)\\MSSQLLocalDB). " +
-            "Point it at your SQL Server instance if LocalDB is not installed.");
+        try
+        {
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            db.Database.EnsureCreated();
+            var hasher = scope.ServiceProvider.GetRequiredService<PasswordHasher>();
+            ContentSeeder.Seed(db, app.Environment.ContentRootPath, hasher, logger, app.Configuration);
+            logger.LogInformation("Database ready (attempt {Attempt}).", attempt);
+            break;
+        }
+        catch (Exception ex) when (attempt < MaxRetries)
+        {
+            var wait = attempt * 5;
+            logger.LogWarning(ex, "DB setup attempt {Attempt}/{Max} failed — retrying in {Wait}s.", attempt, MaxRetries, wait);
+            Thread.Sleep(wait * 1000);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "DB setup failed after {Max} attempts — app starting without DB init.", MaxRetries);
+        }
     }
 }
 
