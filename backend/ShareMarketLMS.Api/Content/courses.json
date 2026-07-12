@@ -67,6 +67,15 @@
       "order": 7,
       "file": "sql_server.md",
       "parser": "generic"
+    },
+    {
+      "slug": "erp-complete",
+      "title": "ERP — Complete System: All Modules & Flows",
+      "description": "End-to-end ERP course covering all 11 modules — CRM, Sales & Distribution, Production Planning, Purchase Management, Inventory, Production, Quality, Finance, HR, Asset Management, and Analytics. Includes process flows, integration points, and interview prep.",
+      "category": "ERP",
+      "order": 8,
+      "file": "erp.md",
+      "parser": "generic"
     }
   ]
 }

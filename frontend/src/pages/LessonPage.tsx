@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import { api } from '../api'
 import { getVisualsFor } from '../components/Visuals'
 import type { LessonDetail } from '../types'
@@ -70,7 +71,7 @@ export default function LessonPage() {
       )}
 
       <article className="markdown">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{lesson.contentMarkdown}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{lesson.contentMarkdown}</ReactMarkdown>
       </article>
 
       <footer className="lesson-nav">

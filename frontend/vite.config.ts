@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5199',
+        target: 'https://sharemarketlms-api.onrender.com',
         changeOrigin: true,
       },
     },
