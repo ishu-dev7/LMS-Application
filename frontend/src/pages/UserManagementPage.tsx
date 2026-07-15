@@ -214,6 +214,50 @@ function EnrollmentPanel({ user, onClose, onChanged }: EnrollmentPanelProps) {
   )
 }
 
+// ── delete confirmation modal ─────────────────────────────────────────────────
+
+interface DeleteConfirmModalProps {
+  user: AdminUser
+  onClose: () => void
+  onConfirm: () => Promise<void>
+}
+
+function DeleteConfirmModal({ user, onClose, onConfirm }: DeleteConfirmModalProps) {
+  const [busy, setBusy] = useState(false)
+
+  async function handleDelete() {
+    setBusy(true)
+    try { await onConfirm() }
+    finally { setBusy(false) }
+  }
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal" style={{ maxWidth: 420 }} onClick={e => e.stopPropagation()}>
+        <div className="modal-header">
+          <h3>Delete User</h3>
+          <button className="btn-icon" onClick={onClose}>✕</button>
+        </div>
+        <div className="modal-body">
+          <p style={{ margin: 0 }}>
+            Are you sure you want to delete <strong>{user.displayName}</strong> ({user.email})?
+          </p>
+          <p className="text-muted" style={{ margin: 0, fontSize: 13 }}>
+            This permanently removes all their progress, journal entries, and course enrollments.
+          </p>
+          <div className="modal-actions">
+            <button className="btn btn-ghost" onClick={onClose}>Cancel</button>
+            <button className="btn btn-primary" style={{ background: 'var(--danger)', color: '#fff' }}
+              disabled={busy} onClick={handleDelete}>
+              {busy ? 'Deleting…' : 'Delete User'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── main page ─────────────────────────────────────────────────────────────────
 
 export default function UserManagementPage() {
@@ -222,6 +266,7 @@ export default function UserManagementPage() {
   const [showCreate, setShowCreate] = useState(false)
   const [editing, setEditing] = useState<AdminUser | null>(null)
   const [enrolling, setEnrolling] = useState<AdminUser | null>(null)
+  const [confirmDelete, setConfirmDelete] = useState<AdminUser | null>(null)
   const [search, setSearch] = useState('')
   const [deleting, setDeleting] = useState<number | null>(null)
 
@@ -233,12 +278,12 @@ export default function UserManagementPage() {
   useEffect(() => { load().finally(() => setLoading(false)) }, [])
 
   async function deleteUser(u: AdminUser) {
-    if (!confirm(`Delete user "${u.displayName}" (${u.email})? This removes all their progress, journal entries and enrollments.`)) return
     setDeleting(u.id)
     try {
       await api.delete(`/api/admin/users/${u.id}`)
       setUsers(prev => prev.filter(x => x.id !== u.id))
       if (enrolling?.id === u.id) setEnrolling(null)
+      setConfirmDelete(null)
     } finally { setDeleting(null) }
   }
 
@@ -266,13 +311,14 @@ export default function UserManagementPage() {
           </button>
         </div>
 
-        <input
-          className="search-input"
-          placeholder="Search by name or email…"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          style={{ margin: '12px 16px', width: 'calc(100% - 32px)' }}
-        />
+        <div className="um-search-wrap">
+          <input
+            className="search-input"
+            placeholder="Search by name or email…"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+        </div>
 
         {loading ? (
           <p className="text-muted" style={{ padding: 16 }}>Loading…</p>
@@ -300,11 +346,16 @@ export default function UserManagementPage() {
                   </div>
                 </div>
                 <div className="um-user-actions" onClick={e => e.stopPropagation()}>
-                  <button className="btn-icon-sm" title="Edit" onClick={() => setEditing(u)}>✏️</button>
-                  <button className="btn-icon-sm" title="Delete"
+                  <button className="btn-icon-sm" title="Edit user" onClick={() => setEditing(u)}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>
+                  </button>
+                  <button className="btn-icon-sm um-delete-btn" title="Delete user"
                     disabled={deleting === u.id}
-                    onClick={() => deleteUser(u)}>
-                    {deleting === u.id ? '…' : '🗑️'}
+                    onClick={() => setConfirmDelete(u)}>
+                    {deleting === u.id
+                      ? '…'
+                      : <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+                    }
                   </button>
                 </div>
               </div>
@@ -323,7 +374,11 @@ export default function UserManagementPage() {
           />
         ) : (
           <div className="um-empty-state">
-            <p>👈 Select a user to manage their course assignments</p>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2.2rem', marginBottom: '0.5rem', opacity: 0.4 }}>👤</div>
+              <p style={{ margin: 0, fontWeight: 600, color: 'var(--heading)' }}>Select a user</p>
+              <p className="text-muted" style={{ margin: '0.25rem 0 0', fontSize: '0.88rem' }}>Click any user to manage their course assignments</p>
+            </div>
           </div>
         )}
       </div>
@@ -340,6 +395,13 @@ export default function UserManagementPage() {
           user={editing}
           onClose={() => setEditing(null)}
           onSaved={() => { load(); setEditing(null) }}
+        />
+      )}
+      {confirmDelete && (
+        <DeleteConfirmModal
+          user={confirmDelete}
+          onClose={() => setConfirmDelete(null)}
+          onConfirm={() => deleteUser(confirmDelete)}
         />
       )}
     </div>
