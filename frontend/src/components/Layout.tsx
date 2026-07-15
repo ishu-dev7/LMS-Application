@@ -16,8 +16,8 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div className="brand">
           <span className="brand-icon">📈</span>
           <div>
-            <div className="brand-name">Share Market LMS</div>
-            <div className="brand-sub">NSE · BSE · Learn properly</div>
+            <div className="brand-name">Nexora</div>
+            <div className="brand-sub">Learn without limits</div>
           </div>
         </div>
 
