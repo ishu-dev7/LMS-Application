@@ -1,4 +1,4 @@
-# Upload BA courses to Nexora LMS
+# Upload BA and Senior BA courses to Nexora LMS
 # Usage: .\upload_ba_courses.ps1 -AdminEmail "admin@nexora.com" -AdminPassword "Admin@123" -ApiBase "https://sharemarketlms-api.onrender.com"
 
 param(
@@ -8,177 +8,185 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+$ContentDir = Join-Path $PSScriptRoot "backend\ShareMarketLMS.Api\Content"
 
-function Invoke-Api {
-  param([string]$Method, [string]$Path, [hashtable]$Body, [string]$Token)
-  $headers = @{ "Content-Type" = "application/json" }
-  if ($Token) { $headers["Authorization"] = "Bearer $Token" }
-  $json = if ($Body) { $Body | ConvertTo-Json -Depth 10 } else { $null }
-  $resp = Invoke-RestMethod -Method $Method -Uri "$ApiBase$Path" -Headers $headers -Body $json -ErrorAction Stop
-  return $resp
+function Post-Api {
+  param([string]$Path, [object]$Body, [string]$Token = "")
+  $h = @{ "Content-Type" = "application/json; charset=utf-8" }
+  if ($Token) { $h["Authorization"] = "Bearer $Token" }
+  $json  = $Body | ConvertTo-Json -Depth 10 -Compress
+  $bytes = [System.Text.Encoding]::UTF8.GetBytes($json)
+  return Invoke-RestMethod -Uri "$ApiBase$Path" -Method POST -Headers $h -Body $bytes
 }
 
-# ── Login ────────────────────────────────────────────────────────────────────
-Write-Host "Logging in..." -ForegroundColor Cyan
-$login = Invoke-Api -Method POST -Path "/api/auth/login" -Body @{ email = $AdminEmail; password = $AdminPassword }
-$token = $login.token
-Write-Host "Logged in as $($login.displayName)" -ForegroundColor Green
+function Get-Api {
+  param([string]$Path, [string]$Token = "")
+  $h = @{}
+  if ($Token) { $h["Authorization"] = "Bearer $Token" }
+  return Invoke-RestMethod -Uri "$ApiBase$Path" -Method GET -Headers $h
+}
 
-# ── Course definitions ────────────────────────────────────────────────────────
-$courses = @(
+# ── Login ─────────────────────────────────────────────────────────────────────
+Write-Host "Logging in..." -ForegroundColor Cyan
+$auth  = Post-Api -Path "/api/auth/login" -Body @{ email = $AdminEmail; password = $AdminPassword }
+$TOKEN = $auth.token
+Write-Host "Login OK as $($auth.displayName)" -ForegroundColor Green
+
+# ── Parse markdown ─────────────────────────────────────────────────────────────
+function Parse-Markdown {
+  param([string]$FilePath)
+  $raw     = [IO.File]::ReadAllText($FilePath, [Text.Encoding]::UTF8)
+  $modules = [System.Collections.ArrayList]::new()
+
+  # Split on ## headings (modules)
+  $modParts = [regex]::Split($raw, '(?m)^## ')
+  foreach ($part in $modParts) {
+    $part = $part.Trim()
+    if (-not $part) { continue }
+
+    $lines    = $part -split "`n"
+    $modTitle = $lines[0].Trim()
+    $modBody  = ($lines[1..($lines.Length - 1)] -join "`n")
+
+    $lessons = [System.Collections.ArrayList]::new()
+
+    # Split on ### headings (lessons)
+    $lessParts = [regex]::Split($modBody, '(?m)^### ')
+    foreach ($lp in $lessParts) {
+      $lp = $lp.Trim()
+      if (-not $lp) { continue }
+      $llines  = $lp -split "`n"
+      $ltitle  = $llines[0].Trim()
+      $lcontent = "### " + $lp
+      [void]$lessons.Add(@{ Title = $ltitle; Content = $lcontent })
+    }
+
+    if ($lessons.Count -gt 0) {
+      [void]$modules.Add(@{ Title = $modTitle; Lessons = $lessons })
+    }
+  }
+  return $modules
+}
+
+function Get-Minutes {
+  param([string]$text)
+  $words = ($text -split '\s+').Count
+  $mins  = [Math]::Max(5, [Math]::Ceiling($words / 200))
+  return [Math]::Min($mins, 60)
+}
+
+# ── Course definitions ─────────────────────────────────────────────────────────
+$COURSES = @(
   @{
-    slug        = "ba-role"
-    title       = "Business Analyst - Interview Preparation"
-    description = "Complete step-by-step BA interview prep: requirements, process analysis, Agile BA, stakeholder management, and 50+ scenario-based questions."
-    emoji       = "📋"
-    category    = "Training"
-    file        = "course_ba_role.md"
+    Slug  = "ba-role"
+    Title = "Business Analyst - Interview Preparation"
+    Desc  = "Complete step-by-step BA interview prep: requirements, process analysis, Agile BA, stakeholder management, and 50+ scenario-based questions."
+    File  = "course_ba_role.md"
   },
   @{
-    slug        = "senior-ba-role"
-    title       = "Senior Business Analyst - Advanced Preparation"
-    description = "Advanced Senior BA interview prep: enterprise analysis, business case development, strategic stakeholder management, and 60+ complex scenario questions."
-    emoji       = "🎯"
-    category    = "Training"
-    file        = "course_senior_ba.md"
+    Slug  = "senior-ba-role"
+    Title = "Senior Business Analyst - Advanced Preparation"
+    Desc  = "Advanced Senior BA interview prep: enterprise analysis, business case development, strategic stakeholder management, and 60+ complex scenario questions."
+    File  = "course_senior_ba.md"
   }
 )
 
-$contentBase = "$PSScriptRoot\backend\ShareMarketLMS.Api\Content"
+$grandTotal = 0
 
-foreach ($course in $courses) {
-  Write-Host "`n=== Processing: $($course.title) ===" -ForegroundColor Yellow
+foreach ($c in $COURSES) {
+  Write-Host ""
+  Write-Host "=== $($c.Title) ===" -ForegroundColor Cyan
 
-  # Check if course exists
-  $existing = $null
-  try {
-    $all = Invoke-Api -Method GET -Path "/api/admin/courses" -Token $token
-    $existing = $all | Where-Object { $_.slug -eq $course.slug }
-  } catch { }
-
+  # Create or find course
   $courseId = $null
-  if ($existing) {
-    $courseId = $existing.id
-    Write-Host "  Course already exists (ID: $courseId) - updating..." -ForegroundColor DarkYellow
-  } else {
-    Write-Host "  Creating course..." -ForegroundColor Cyan
-    $created = Invoke-Api -Method POST -Path "/api/admin/courses" -Token $token -Body @{
-      slug        = $course.slug
-      title       = $course.title
-      description = $course.description
-      emoji       = $course.emoji
-      category    = $course.category
+  try {
+    $course   = Post-Api -Path "/api/admin/courses" -Token $TOKEN -Body @{
+      slug        = $c.Slug
+      title       = $c.Title
+      description = $c.Desc
+      category    = "Training"
     }
-    $courseId = $created.id
-    Write-Host "  Created course ID: $courseId" -ForegroundColor Green
+    $courseId = $course.id
+    Write-Host "  Course created id=$courseId" -ForegroundColor Green
+  } catch {
+    Write-Host "  Course may already exist - searching..." -ForegroundColor Yellow
+    try {
+      $all      = Get-Api -Path "/api/courses" -Token $TOKEN
+      $existing = $all | Where-Object { $_.slug -eq $c.Slug }
+      if ($existing) {
+        $courseId = $existing.id
+        Write-Host "  Using existing course id=$courseId" -ForegroundColor Yellow
+      } else {
+        Write-Host "  SKIP: cannot find or create course" -ForegroundColor Red
+        continue
+      }
+    } catch {
+      Write-Host "  SKIP: error finding course" -ForegroundColor Red
+      continue
+    }
   }
 
-  # Parse the markdown content file
-  $mdPath = Join-Path $contentBase $course.file
-  if (-not (Test-Path $mdPath)) {
-    Write-Host "  ERROR: Content file not found: $mdPath" -ForegroundColor Red
+  # Parse content
+  $filePath = Join-Path $ContentDir $c.File
+  if (-not (Test-Path $filePath)) {
+    Write-Host "  SKIP: file not found $filePath" -ForegroundColor Red
     continue
   }
 
-  $lines = Get-Content $mdPath -Encoding UTF8
+  $modules = Parse-Markdown -FilePath $filePath
+  Write-Host "  Parsed $($modules.Count) modules" -ForegroundColor Gray
 
-  # Parse modules (## headings) and lessons (### headings)
-  $modules = @()
-  $currentModule = $null
-  $lessonBuffer = @()
+  $mOrder     = 1
+  $trackTotal = 0
 
-  foreach ($line in $lines) {
-    if ($line -match '^## (.+)$') {
-      # Save previous module
-      if ($currentModule) {
-        $currentModule.LessonBuffer = $lessonBuffer
-        $modules += $currentModule
-        $lessonBuffer = @()
-      }
-      $currentModule = @{ Title = $matches[1].Trim(); Lessons = @(); LessonBuffer = @() }
-    } elseif ($line -match '^### (.+)$') {
-      if ($currentModule) {
-        # Save previous lesson body to last lesson
-        if ($currentModule.Lessons.Count -gt 0) {
-          $lastLesson = $currentModule.Lessons[-1]
-          $lastLesson.Body = ($lessonBuffer -join "`n").Trim()
-          $lessonBuffer = @()
-        }
-        $currentModule.Lessons += @{ Title = $matches[1].Trim(); Body = "" }
-        $lessonBuffer = @()
-      }
-    } else {
-      $lessonBuffer += $line
-    }
-  }
-
-  # Flush final lesson and module
-  if ($currentModule) {
-    if ($currentModule.Lessons.Count -gt 0) {
-      $lastLesson = $currentModule.Lessons[-1]
-      $lastLesson.Body = ($lessonBuffer -join "`n").Trim()
-    }
-    $currentModule.LessonBuffer = @()
-    $modules += $currentModule
-  }
-
-  Write-Host "  Parsed $($modules.Count) modules" -ForegroundColor Cyan
-
-  # Get existing modules
-  $existingModules = @()
-  try {
-    $existingModules = Invoke-Api -Method GET -Path "/api/admin/courses/$courseId/modules" -Token $token
-  } catch { }
-
-  $moduleOrder = 1
   foreach ($mod in $modules) {
-    Write-Host "  Module $moduleOrder`: $($mod.Title) ($($mod.Lessons.Count) lessons)" -ForegroundColor White
+    $modTitle    = $mod.Title
+    $isInterview = $modTitle -match 'Interview'
+    $phase       = if ($isInterview) { "InterviewReady" } else { "Core" }
+    $topicType   = if ($isInterview) { "InterviewReady" } else { "Regular" }
 
-    # Find or create module
-    $existingMod = $existingModules | Where-Object { $_.title -eq $mod.Title }
-    $moduleId = $null
-    if ($existingMod) {
-      $moduleId = $existingMod.id
-      Write-Host "    Module exists (ID: $moduleId)" -ForegroundColor DarkGray
-    } else {
-      $newMod = Invoke-Api -Method POST -Path "/api/admin/courses/$courseId/modules" -Token $token -Body @{
-        title = $mod.Title
-        order = $moduleOrder
-      }
-      $moduleId = $newMod.id
-      Write-Host "    Created module ID: $moduleId" -ForegroundColor Green
-    }
+    Write-Host "  Module $mOrder`: $modTitle ($($mod.Lessons.Count) lessons)" -ForegroundColor Gray
 
-    # Get existing lessons
-    $existingLessons = @()
     try {
-      $existingLessons = Invoke-Api -Method GET -Path "/api/admin/modules/$moduleId/lessons" -Token $token
-    } catch { }
-
-    $lessonOrder = 1
-    foreach ($lesson in $mod.Lessons) {
-      $lessonTitle = $lesson.Title
-      $lessonBody  = $lesson.Body
-
-      $existingLesson = $existingLessons | Where-Object { $_.title -eq $lessonTitle }
-      if ($existingLesson) {
-        Write-Host "    [SKIP] Lesson already exists: $lessonTitle" -ForegroundColor DarkGray
-      } else {
-        $null = Invoke-Api -Method POST -Path "/api/admin/modules/$moduleId/lessons" -Token $token -Body @{
-          title           = $lessonTitle
-          markdownContent = $lessonBody
-          order           = $lessonOrder
-          topicType       = "Regular"
-          estimatedMinutes = [int]([Math]::Max(5, [Math]::Min(45, ($lessonBody.Length / 120))))
-        }
-        Write-Host "    [OK] $lessonTitle" -ForegroundColor Green
+      $module   = Post-Api -Path "/api/admin/modules" -Token $TOKEN -Body @{
+        courseId  = $courseId
+        title     = $modTitle
+        order     = $mOrder
+        phase     = $phase
+        topicType = $topicType
       }
-      $lessonOrder++
+      $moduleId = $module.id
+    } catch {
+      Write-Host "    ERROR creating module: $modTitle" -ForegroundColor Red
+      $mOrder++
+      continue
     }
-    $moduleOrder++
+
+    $lOrder = 1
+    foreach ($lesson in $mod.Lessons) {
+      $mins = Get-Minutes -text $lesson.Content
+      try {
+        [void](Post-Api -Path "/api/admin/lessons" -Token $TOKEN -Body ([PSCustomObject]@{
+          moduleId         = $moduleId
+          title            = $lesson.Title
+          order            = $lOrder
+          estimatedMinutes = $mins
+          contentMarkdown  = $lesson.Content
+        }))
+        Write-Host "    [OK] $($lesson.Title)" -ForegroundColor Green
+        $trackTotal++
+        $lOrder++
+      } catch {
+        Write-Host "    ERROR lesson: $($lesson.Title)" -ForegroundColor Red
+      }
+    }
+
+    $mOrder++
   }
 
-  Write-Host "  Done: $($course.title)" -ForegroundColor Green
+  Write-Host "  Done: $trackTotal lessons uploaded" -ForegroundColor Cyan
+  $grandTotal += $trackTotal
 }
 
-Write-Host "`nAll BA courses uploaded successfully!" -ForegroundColor Green
+Write-Host ""
+Write-Host "COMPLETE. Total lessons uploaded: $grandTotal" -ForegroundColor Cyan

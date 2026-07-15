@@ -83,14 +83,14 @@ Break-even Point = Fixed Costs / (Revenue per unit - Variable Cost per unit)
 Project: Customer Self-Service Portal
 
 Current State: 85% of customer queries handled by call centre (2,400 agents)
-Average cost per call: ₹45 | Annual call volume: 12M calls | Annual cost: ₹540M
+Average cost per call: Rs.45 | Annual call volume: 12M calls | Annual cost: Rs.540M
 
 Target State: Self-service portal handles 40% of queries
 Remaining calls handled more efficiently
 
-Year 1 Investment: ₹42M (development, infrastructure, training)
-Year 2-4 Savings: ₹80M per year (32M calls deflected × ₹12 net saving per deflected call)
-Net 3-Year Benefit: ₹198M
+Year 1 Investment: Rs.42M (development, infrastructure, training)
+Year 2-4 Savings: Rs.80M per year (32M calls deflected × Rs.12 net saving per deflected call)
+Net 3-Year Benefit: Rs.198M
 ROI: 371% | Payback: 6.3 months
 ```
 
@@ -175,7 +175,7 @@ Beyond formal power, map informal influence:
 - Document decisions formally with email confirmation every time
 - Create a decision log visible to all senior stakeholders
 - Bring the sponsor's previous decision to each meeting: "Last time we agreed X — do you want to revisit or proceed?"
-- Quantify the cost of changes: "This change will push delivery 3 weeks and cost ₹8M"
+- Quantify the cost of changes: "This change will push delivery 3 weeks and cost Rs.8M"
 
 **Conflicting Executive Priorities:**
 - Surface the conflict explicitly — never try to hide it
@@ -421,7 +421,7 @@ Critically, escalate to the sponsor — without executive reinforcement, adoptio
 
 **Scenario 5: Highly Ambitious Project with Unclear Scope**
 
-*"You've been brought in as Senior BA for a 'digital transformation' initiative. There's a ₹50 crore budget, an 18-month timeline, a vague brief ('transform the customer experience'), and a steering committee that can't agree on priorities. Where do you start?"*
+*"You've been brought in as Senior BA for a 'digital transformation' initiative. There's a Rs.50 crore budget, an 18-month timeline, a vague brief ('transform the customer experience'), and a steering committee that can't agree on priorities. Where do you start?"*
 
 **Answer:**
 The biggest risk here is starting development on the wrong thing. The first 4-6 weeks must be discovery and strategy alignment — not requirements.
