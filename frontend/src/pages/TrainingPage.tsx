@@ -76,7 +76,7 @@ export default function TrainingPage() {
           <h2 className="section-title">Your Tracks</h2>
           <div className="training-grid">
             {enrolled.map(slug => (
-              <TrackCard key={slug} slug={slug} course={bySlug[slug]} isAdmin={isAdmin} />
+              <TrackCard key={slug} slug={slug} course={bySlug[slug]} />
             ))}
           </div>
         </section>
@@ -114,12 +114,10 @@ function TrackCard({
   slug,
   course,
   locked = false,
-  isAdmin = false,
 }: {
   slug: string
   course?: CourseSummary
   locked?: boolean
-  isAdmin?: boolean
 }) {
   const meta = TRACK_META[slug] ?? { icon: '📚', color: '#6b7280', tagline: '' }
   const pct  = course?.percentComplete ?? 0
