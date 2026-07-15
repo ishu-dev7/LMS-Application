@@ -11,6 +11,7 @@ import ProgressPage from './pages/ProgressPage'
 import AdminPage from './pages/AdminPage'
 import QuizMasterPage from './pages/QuizMasterPage'
 import UserManagementPage from './pages/UserManagementPage'
+import TrainingPage from './pages/TrainingPage'
 import type { ReactElement } from 'react'
 
 function Protected({ children }: { children: ReactElement }) {
@@ -32,6 +33,7 @@ export default function App() {
       <Route path="/admin" element={<Protected><AdminPage /></Protected>} />
       <Route path="/admin/quiz-master" element={<Protected><QuizMasterPage /></Protected>} />
       <Route path="/admin/users" element={<Protected><UserManagementPage /></Protected>} />
+      <Route path="/training" element={<Protected><TrainingPage /></Protected>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

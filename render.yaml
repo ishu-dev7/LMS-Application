@@ -21,3 +21,9 @@ services:
         sync: false
       - key: Cors__AllowedOrigins__0
         sync: false
+      - key: DefaultAdmin__Email
+        value: admin@nexora.com
+      - key: DefaultAdmin__DisplayName
+        value: Nexora Admin
+      - key: DefaultAdmin__Password
+        value: Admin@123

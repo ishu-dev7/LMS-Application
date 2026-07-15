@@ -1012,6 +1012,184 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); ou
 .btn-danger-outline:hover { background: var(--danger-soft); }
 
 /* ============================================================
+   TRAINING HUB
+   ============================================================ */
+.training-page { max-width: 1080px; }
+
+.training-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1.8rem 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+}
+.training-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.training-hero-text { flex: 1; }
+.training-hero-text h1 { margin: 0 0 0.5rem; font-size: 1.6rem; }
+.training-hero-text p  { margin: 0; font-size: 0.92rem; }
+
+.training-hero-stats {
+  display: flex;
+  gap: 1.6rem;
+  flex-shrink: 0;
+  align-items: center;
+}
+.training-stat { text-align: center; }
+.training-stat-val {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--heading);
+  line-height: 1;
+}
+.training-stat-lbl {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── Track cards grid ── */
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.1rem;
+}
+
+.training-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.training-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--track-color, var(--accent));
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.training-card:not(.training-card-locked):hover {
+  border-color: var(--track-color, var(--accent));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.training-card-locked {
+  opacity: 0.6;
+}
+
+.training-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.training-card-icon { font-size: 2rem; line-height: 1; }
+
+.training-lock-badge {
+  font-size: 0.72rem; font-weight: 700;
+  background: var(--surface-2); color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: 0.18rem 0.6rem;
+}
+.training-done-badge {
+  font-size: 0.72rem; font-weight: 700;
+  background: var(--accent-soft); color: var(--accent);
+  border-radius: 20px; padding: 0.18rem 0.6rem;
+}
+
+.training-card-title {
+  margin: 0.2rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--heading);
+}
+.training-card-tagline {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.training-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.2rem 0;
+}
+.training-progress-bar {
+  flex: 1;
+  height: 5px;
+  background: var(--ring-track);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.training-progress-fill {
+  height: 100%;
+  background: var(--track-color, var(--accent));
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+.training-progress-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  flex-shrink: 0;
+  width: 2.5rem;
+  text-align: right;
+}
+
+.training-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+.training-card-meta { font-size: 0.78rem; }
+
+.training-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+.training-empty h3 { margin: 0; color: var(--heading); }
+.training-empty p  { margin: 0; }
+
+/* nav badge for Training */
+.nav-training-badge {
+  font-size: 0.65rem; font-weight: 700;
+  background: linear-gradient(135deg, #9b5cf6, #3b82f6);
+  color: #fff;
+  border-radius: 20px; padding: 0.1rem 0.45rem;
+  margin-left: auto;
+  letter-spacing: 0.03em;
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {

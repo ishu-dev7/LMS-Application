@@ -1,7 +1,7 @@
 {
   "adminUser": {
-    "email": "admin@lms.local",
-    "displayName": "System Admin",
+    "email": "admin@nexora.com",
+    "displayName": "Nexora Admin",
     "password": "Admin@123"
   },
   "courses": [

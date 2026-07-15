@@ -73,7 +73,16 @@ public static class ContentSeeder
         var password = config?["DefaultAdmin:Password"]    ?? (File.Exists(manifestPath) ? ReadManifest(manifestPath).AdminUser?.Password     : null);
 
         if (email is null || password is null) return;
-        if (db.Users.Any(u => u.Email == email)) return;
+
+        var existing = db.Users.FirstOrDefault(u => u.Email == email);
+        if (existing is not null)
+        {
+            existing.PasswordHash = hasher.Hash(password);
+            if (name is not null) existing.DisplayName = name;
+            db.SaveChanges();
+            logger.LogInformation("Updated admin account {Email}.", email);
+            return;
+        }
 
         db.Users.Add(new User
         {
