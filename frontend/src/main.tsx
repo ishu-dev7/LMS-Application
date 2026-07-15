@@ -5,6 +5,13 @@ import './index.css'
 import App from './App.tsx'
 import { AuthProvider } from './auth.tsx'
 
+// Apply saved theme before first paint to avoid flash
+;(function () {
+  const saved = localStorage.getItem('lms-theme')
+  const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+  document.documentElement.setAttribute('data-theme', saved === 'light' || saved === 'dark' ? saved : preferred)
+})()
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>

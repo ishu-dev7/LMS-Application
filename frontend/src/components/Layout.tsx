@@ -1,10 +1,14 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth'
+import { useTheme } from '../theme'
 import type { ReactNode } from 'react'
 
 export default function Layout({ children }: { children: ReactNode }) {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const { theme, toggle } = useTheme()
+
+  const isLight = theme === 'light'
 
   return (
     <div className="layout">
@@ -27,6 +31,14 @@ export default function Layout({ children }: { children: ReactNode }) {
         </nav>
 
         <div className="sidebar-footer">
+          <button className="theme-toggle" onClick={toggle} title="Toggle dark / light mode">
+            <span className="theme-toggle-icon">{isLight ? '☀️' : '🌙'}</span>
+            <span className="theme-toggle-label">{isLight ? 'Light' : 'Dark'}</span>
+            <span className={`theme-toggle-track${isLight ? ' on' : ''}`}>
+              <span className="theme-toggle-knob" />
+            </span>
+          </button>
+
           <div className="user-chip" title={user?.email}>
             <span className="avatar">{user?.displayName?.[0]?.toUpperCase() ?? '?'}</span>
             <span className="user-name">{user?.displayName}</span>
